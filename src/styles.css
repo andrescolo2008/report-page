@@ -1,0 +1,7 @@
+.box-shadow {
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+     /* 0px eje x
+    5 px eje y 
+    5 px spread 
+    rgba ,0,0,0,0.2  casi traslucido */
+}
