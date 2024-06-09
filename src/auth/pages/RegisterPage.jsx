@@ -5,6 +5,8 @@ import { Link as RouterLink } from 'react-router-dom'
 import { AuthLayout } from '../layout/AuthLayout'
 import { useForm } from '../../hooks/usefForm'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { startCreatingUser } from '../../store/auth/thunks'
 
 const formData= { 
   email:'', 
@@ -22,23 +24,30 @@ const formValidations = {
 
 export const RegisterPage = () => {
 
+  const dispatche = useDispatch()
+
   const [formSubmitted,SetformSubmitted] = useState(false);
 
   const {displayName,email,password,onInputChange,formState,
-    displayNameValid,emailValid,passwordValid,isFormValid
+    displayNameValid,emailValid,passwordValid,isFormValid,createValidators
   }=useForm(formData,formValidations)
 
   
   const onSubmit=(event) => {
     event.preventDefault()
     SetformSubmitted(true)
+    if(!isFormValid) return
+    dispatche(startCreatingUser(formState)) // este formState, contiene el name ,password y displayName   necesarios para crear el nuevo usuario en fireBase
+    console.log(formState);
+    // const validationResults = createValidators(); // Llama a createValidators y guarda el resultado
+    // console.log(validationResults);
     
   }
   return (
     
     <AuthLayout title='Registrar nuevo usuario'>
 
-      <h1>FormValid-campos válidos? {isFormValid? 'sí':'no'}</h1>
+      {/* <h1>FormValid-campos válidos? {isFormValid? 'sí':'no'}</h1> */}
 
             <form onSubmit={onSubmit}>
                     <Grid container>

@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithPopup, updateCurrentUser } from "firebase/auth";
 import { fireBaseAuth } from "./config";
 
 const googleProvider= new  GoogleAuthProvider();
@@ -28,4 +28,32 @@ return {
         }
     } 
 
+}
+
+ export const registerUser= async ({displayName,email,password}) =>{
+
+    try {
+
+       const resp = await createUserWithEmailAndPassword(fireBaseAuth,email,password);
+        const {uid,photoURL} = resp.user
+        
+
+            //  TODO Actualizar el usuario en firebase
+           await  updateCurrentUser(fireBaseAuth.currentUser,{displayName})
+
+        return { 
+            ok:true,
+            uid,photoURL,email,displayName
+        }
+        
+    } catch (error) {
+        
+    const errorMessage='Este usuario ya existe, registre otro'
+    console.log(error);
+    
+        return {
+            ok: false,
+            errorMessage
+        }
+    }
 }

@@ -43,8 +43,8 @@ setFormState( initialForm );
       formCheckedValues [`${formField}Valid`] =fn(formState[formField]) ? null: errorMessage
     }
     setFormValidation(formCheckedValues)
-    
-    console.log(formCheckedValues);
+    return formCheckedValues
+    // console.log(formCheckedValues);
     
 }
 
@@ -55,7 +55,8 @@ onInputChange,
 onResetForm,
 formValidation,
 ... formValidation,
-isFormValid
+isFormValid,
+createValidators,
  
   }
 }
