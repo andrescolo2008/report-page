@@ -32,7 +32,9 @@ export const startGoogleSingIn = (email,password ) =>{
         const {ok,uid,photoURL,errorMessage} = await registerUser({displayName,email,password})
 
             if(!ok) return dispatch(logout({errorMessage}))
+
                 dispatch(login({uid,photoURL,email,displayName}) )
+                
                 console.log({ok,uid,photoURL,errorMessage});
     }
 }
