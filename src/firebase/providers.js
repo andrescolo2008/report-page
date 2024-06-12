@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithPopup, updateCurrentUser } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, updateCurrentUser, updateProfile } from "firebase/auth";
 import { fireBaseAuth } from "./config";
 
 const googleProvider= new  GoogleAuthProvider();
@@ -55,5 +55,32 @@ return {
             ok: false,
             errorMessage
         }
+    }
+}
+
+export const loginUser= async ({email,password}) =>{
+
+    try {
+        const resp = await signInWithEmailAndPassword(fireBaseAuth,email,password);
+
+        const {uid,displayName,photoURL,email}= resp.user;
+
+        await  updateProfile(fireBaseAuth.currentUser,{displayName})
+
+        
+        return {
+            ok: true,
+            uid,displayName,email,photoURL
+            }
+            } catch (error) {
+                
+                const errorCode=error.code;
+                const errorMessage='el usuario o la contraseña no son válidas';
+                console.log(errorMessage,errorCode,email,password)
+                return{
+                    ok: false,
+                    errorCode,
+                    errorMessage,
+                    }
     }
 }

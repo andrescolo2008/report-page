@@ -1,29 +1,33 @@
 import { Google } from "@mui/icons-material"
-import { Button, Grid, Link, TextField, Typography} from "@mui/material"
+import { Alert, Button, Grid, Link, TextField, Typography} from "@mui/material"
 import { Link as RouterLink} from "react-router-dom"
 import { AuthLayout } from "../layout/AuthLayout"
 import { useForm } from "../../hooks/usefForm"
-import { checkingAuthentication, startGoogleSingIn } from "../../store/auth/thunks"
+import { checkingAuthentication, startGoogleSingIn, startLoginUser } from "../../store/auth/thunks"
 import { useDispatch, useSelector } from "react-redux"
 import { useMemo } from "react"
 
+
+
 export const LoginPage = () => {
 
-  const{status}= useSelector(state=> state.auth)
+  const{status,errorMessage}= useSelector(state=> state.auth)
 
 
   
   const {email,password,onInputChange}=useForm({ 
-    email:'edgarosp@gmail.com', 
-    password:'123'
+    email:'', 
+    password:''
   })
   
   const isAuthenticating= useMemo(() =>status === 'checking', [status])
   const dispatche=useDispatch()
+
 const onSubmit= ( event) =>{
   event.preventDefault()
-  dispatche(checkingAuthentication())
-  console.log(email,password)
+  // dispatche(checkingAuthentication())
+  dispatche(startLoginUser({email,password}))
+ 
   
 }
 
@@ -38,6 +42,15 @@ const onGoogleSignIn= ( ) =>{
        // lo que este dentro de <AuthLayout > recibirà el  fondo de la login page y recuadro del login 
      
        <AuthLayout title="Ingresar">
+
+                  <Grid 
+                    item xs={12} 
+                    sx={{mt:2}} 
+                    display={ errorMessage ? '': 'none'}
+                    >
+                      <Alert severity='error'> {errorMessage} </Alert>
+                                    
+                  </Grid>
         
                <form onSubmit={onSubmit} >
                     <Grid container>
@@ -72,6 +85,7 @@ const onGoogleSignIn= ( ) =>{
                                       variant='contained' 
                                       fullWidth 
                                       disabled={isAuthenticating}
+                                      onClick={startLoginUser}
                                       >
                                         Login
                                       </Button>
