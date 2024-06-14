@@ -63,7 +63,7 @@ export const loginUser= async ({email,password}) =>{
     try {
         const resp = await signInWithEmailAndPassword(fireBaseAuth,email,password);
 
-        const {uid,displayName,photoURL,email}= resp.user;
+        const {uid,displayName,photoURL}= resp.user;
 
         await  updateProfile(fireBaseAuth.currentUser,{displayName})
 
@@ -76,7 +76,7 @@ export const loginUser= async ({email,password}) =>{
                 
                 const errorCode=error.code;
                 const errorMessage='el usuario o la contraseña no son válidas';
-                console.log(errorMessage,errorCode,email,password)
+                console.log(errorMessage,email,password)
                 return{
                     ok: false,
                     errorCode,

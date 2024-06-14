@@ -7,7 +7,7 @@ import { ReportPage } from "../../Report/pages/ReportPage"
 export const AuthRoutes = () => {
   return (
    <Routes>
-        <Route path="login" element={< LoginPage />} />
+        <Route path="auth/login" element={< LoginPage />} />
         <Route path="report" element={< ReportPage />} />
         <Route path="register" element={< RegisterPage />} />
     

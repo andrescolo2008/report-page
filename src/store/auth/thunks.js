@@ -44,12 +44,13 @@ export const startGoogleSingIn = (email,password ) =>{
 
      dispatch(checkingCredentials())
 
-     const {ok,uid,photoURL,email,displayName,errorMessage} = await loginUser({email,password})
+     const result = await loginUser({email,password})
 
-         if(!ok) return dispatch(logout(errorMessage))
+         if(!result.ok) return dispatch(logout(result.errorMessage))
 
-             dispatch(login({ok,uid,photoURL,email,displayName}) )
+             dispatch(login({result}) )
              
-             console.log({ok,uid,photoURL,email,displayName});
+             
+             console.log(result);
  }
 }
