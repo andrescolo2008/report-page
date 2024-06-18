@@ -11,7 +11,7 @@ import { useMemo } from "react"
 
 export const LoginPage = () => {
 
-  const{status,errorMessage}= useSelector(state=> state.auth)
+  const{status,errorMessage,displayname}= useSelector(state=> state.auth)
 
 
   
@@ -113,13 +113,7 @@ const onGoogleSignIn= ( ) =>{
                            
                           </Grid>
 
-                          <Grid   container direction='row' justifyContent='center'>
-                           <Link component={RouterLink} color='inherit' to='/report'>
-                            ir a la pàgina de reportes( provisionalmente)
-                           
-                           </Link>
-                           
-                          </Grid>
+        
 
                     </Grid>
                </form>

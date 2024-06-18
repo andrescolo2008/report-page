@@ -1,9 +1,21 @@
 import { LogoutRounded, MenuOutlined } from "@mui/icons-material"
 import { AppBar, Grid, IconButton, Toolbar, Typography } from "@mui/material"
+import { startLogOutUser } from "../../store/auth/thunks"
+import { useDispatch } from "react-redux"
 
 
 
 export const NavBar = ({drawerWidthxxx=360}) => {
+  
+
+  const dispache= useDispatch() 
+
+  const onLogOut = () => {
+    dispache(startLogOutUser())
+    console.log('loged out ');
+    
+  }
+  
   return (
     <AppBar position="fixed" sx={{width:{sm:`calc(100% - ${drawerWidthxxx}px)`} ,
     ml:{sm:`${drawerWidthxxx}px`}
@@ -22,7 +34,10 @@ export const NavBar = ({drawerWidthxxx=360}) => {
              alignItems='center' >
                <Typography variant="h6" noWrap component='div'>Report-Card-App</Typography> 
                
-                <IconButton color="error">
+                <IconButton 
+                color="error"
+                onClick={onLogOut}
+                >
                     < LogoutRounded />
                
                 </IconButton>

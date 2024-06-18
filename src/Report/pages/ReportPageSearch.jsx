@@ -4,6 +4,8 @@ import { Link as RouterLink} from "react-router-dom"
 
 
 export const ReportPageSearch = () => {
+
+ 
   return (
 
 <form >
@@ -23,12 +25,12 @@ export const ReportPageSearch = () => {
                              Buscar
                            </Button>
                            
-                        <Grid item  justifyContent='center' container spacing={2} sx={{mb:2, mt:1,mr:1}}>
+                        {/* <Grid item  justifyContent='center' container spacing={2} sx={{mb:2, mt:1,mr:1}}>
                            <Link component={RouterLink} color='inherit' to='/auth/login'>
                             Salir 
                           </Link>
 
-                        </Grid>
+                        </Grid> */}
                          </Grid>
                        
                    </Grid>

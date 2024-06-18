@@ -1,10 +1,14 @@
 import { TurnedIn, TurnedInNot } from '@mui/icons-material'
 import { Box, Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material'
 import { ReportPageSearch } from '../pages/ReportPageSearch'
+import { useSelector } from 'react-redux'
 
 
 export const SideBar = ({drawerWidth=100}) => {
-  return (
+ 
+ const {status,displayName} =useSelector(state =>state.auth )
+
+    return (
     <Box
     component='nav'
     sx={{ width: 'auto', // Ajusta el ancho automáticamente al contenido
@@ -25,8 +29,10 @@ export const SideBar = ({drawerWidth=100}) => {
 
                 <Toolbar>
                     <Typography variant="h6" noWrap component='div'>  
-                       Profesor  Andrés Correa
-                        
+                       
+                    <h4>{displayName ? displayName : 'Usuario no identificado'}</h4>
+                       <h3>{status}</h3>
+
                          </Typography>
                 </Toolbar>
 

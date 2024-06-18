@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, updateCurrentUser, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, updateCurrentUser, updateProfile } from "firebase/auth";
 import { fireBaseAuth } from "./config";
 
 const googleProvider= new  GoogleAuthProvider();
@@ -10,11 +10,11 @@ const googleProvider= new  GoogleAuthProvider();
     // const credentials= GoogleAuthProvider.credentialFromResult(result);   
 //    console.log(credentials);
 const {uid,displayName,email,photoURL}= result.user;
+console.log(uid,displayName,email,photoURL);
 return {
     ok: true,
     uid, displayName, email,photoURL
 }
-// console.log(uid,displayName,email,photoURL);
 
    
 } catch (error) {
@@ -58,19 +58,21 @@ return {
     }
 }
 
-export const loginUser= async ({email,password}) =>{
+export const loginUser= async ({email,password,displayName}) =>{
 
     try {
         const resp = await signInWithEmailAndPassword(fireBaseAuth,email,password);
+        
+        const {uid,photoURL,displayName}= resp.user;
+        // await  updateProfile(fireBaseAuth.currentUser,{displayName})
 
-        const {uid,displayName,photoURL}= resp.user;
 
-        await  updateProfile(fireBaseAuth.currentUser,{displayName})
-
+        console.log({uid,photoURL,displayName});
         
         return {
             ok: true,
             uid,displayName,email,photoURL
+            
             }
             } catch (error) {
                 
@@ -83,4 +85,13 @@ export const loginUser= async ({email,password}) =>{
                     errorMessage,
                     }
     }
+
+    
+
+}
+
+export const logOutUser= async () =>{
+
+        return await fireBaseAuth.signOut();
+
 }

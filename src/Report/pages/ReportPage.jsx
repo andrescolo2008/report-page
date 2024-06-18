@@ -14,9 +14,9 @@ export const ReportPage = () => {
        <ReportLayout  /> 
        
 
-< Nothing />
+{/* < Nothing /> */}
 
-        {/* < ReportNotes /> */}
+        < ReportNotes />
 
        <IconButton
         size="large" 

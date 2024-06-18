@@ -1,5 +1,5 @@
 
-import { loginUser, registerUser, signInWithGoogle } from '../../firebase/providers'
+import { logOutUser, loginUser, registerUser, signInWithGoogle } from '../../firebase/providers'
 import{checkingCredentials, login, logout} from './authSlice'
  // cambiar el estado de  usuarios que ingresando la base de datos
  
@@ -48,9 +48,20 @@ export const startGoogleSingIn = (email,password ) =>{
 
          if(!result.ok) return dispatch(logout(result.errorMessage))
 
-             dispatch(login({result}) )
+            const { uid, displayName, email: userEmail, photoURL } = result.user;
+             dispatch(login({uid, displayName, email: userEmail, photoURL}) )
              
              
              console.log(result);
  }
+}
+
+ export const startLogOutUser= ( ) =>{
+    return async( dispatch)=>{
+       
+         await logOutUser()
+         dispatch(logout())
+    }
+     
+ 
 }
