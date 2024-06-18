@@ -48,7 +48,7 @@ export const startGoogleSingIn = (email,password ) =>{
 
          if(!result.ok) return dispatch(logout(result.errorMessage))
 
-            const { uid, displayName, email: userEmail, photoURL } = result.user;
+            const { uid, displayName, email: userEmail, photoURL } = result;
              dispatch(login({uid, displayName, email: userEmail, photoURL}) )
              
              

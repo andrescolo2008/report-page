@@ -64,7 +64,7 @@ export const loginUser= async ({email,password,displayName}) =>{
         const resp = await signInWithEmailAndPassword(fireBaseAuth,email,password);
         
         const {uid,photoURL,displayName}= resp.user;
-        // await  updateProfile(fireBaseAuth.currentUser,{displayName})
+        await  updateProfile(fireBaseAuth.currentUser,{displayName})
 
 
         console.log({uid,photoURL,displayName});
