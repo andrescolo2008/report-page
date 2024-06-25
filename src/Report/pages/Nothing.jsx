@@ -6,7 +6,7 @@ import { Grid, Typography } from "@mui/material"
 export const Nothing = () => {
   return (
     <Grid
-    className=" animate__animated animate__fadeIn animate__faster"
+    className=" animate__animated animate__fadeIn animate__slower"
     container
     spacing={0}
     direction="column"

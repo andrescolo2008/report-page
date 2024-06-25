@@ -10,15 +10,15 @@ import{checkingCredentials, login, logout} from './authSlice'
     
 }
 
-export const startGoogleSingIn = (email,password ) =>{
+export const startGoogleSingIn = ( ) =>{
     return async( dispatch)=>{
         dispatch(checkingCredentials())
         const result= await signInWithGoogle()
         
         if(!result.ok) return dispatch(logout(result.errorMessage))
-            const{uid,displayName,email,photoURL}= result
-        dispatch(login(uid,displayName,email,photoURL))
-       console.log(uid,displayName,email,photoURL);
+            
+        dispatch(login(result))
+       console.log(result);
        
        
        }
@@ -27,6 +27,7 @@ export const startGoogleSingIn = (email,password ) =>{
        
        export const startCreatingUser=  ({displayName,email,password} ) =>{
            return async( dispatch)=>{
+
         dispatch(checkingCredentials())
 
         const {ok,uid,photoURL,errorMessage} = await registerUser({displayName,email,password})
@@ -35,7 +36,7 @@ export const startGoogleSingIn = (email,password ) =>{
 
                 dispatch(login({uid,photoURL,email,displayName}) )
                 
-                console.log({ok,uid,photoURL,errorMessage});
+                console.log({uid,photoURL,errorMessage});
         }
     }
 
@@ -48,8 +49,8 @@ export const startGoogleSingIn = (email,password ) =>{
 
          if(!result.ok) return dispatch(logout(result.errorMessage))
 
-            const { uid, displayName, email: userEmail, photoURL } = result;
-             dispatch(login({uid, displayName, email: userEmail, photoURL}) )
+            
+             dispatch(login(result) )
              
              
              console.log(result);

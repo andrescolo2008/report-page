@@ -1,3 +1,8 @@
+:root {
+    --animate-duration: 1.5s;
+    --animate-delay: 0,8s;
+  }
+
 .box-shadow {
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
      /* 0px eje x

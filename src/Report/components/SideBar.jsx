@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 
 export const SideBar = ({drawerWidth=100}) => {
  
- const {status,displayName} =useSelector(state =>state.auth )
+ const {displayName} =useSelector(state =>state.auth )
 
     return (
     <Box
@@ -31,7 +31,7 @@ export const SideBar = ({drawerWidth=100}) => {
                     <Typography variant="h6" noWrap component='div'>  
                        
                     <h4>{displayName ? displayName : 'Usuario no identificado'}</h4>
-                       <h3>{status}</h3>
+                       
 
                          </Typography>
                 </Toolbar>

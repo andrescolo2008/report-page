@@ -33,13 +33,14 @@ return {
  export const registerUser= async ({displayName,email,password}) =>{
 
     try {
+console.log({email,password,displayName});
 
        const resp = await createUserWithEmailAndPassword(fireBaseAuth,email,password);
         const {uid,photoURL} = resp.user
         
 
             //  TODO Actualizar el usuario en firebase
-           await  updateCurrentUser(fireBaseAuth.currentUser,{displayName})
+           await  updateProfile(fireBaseAuth.currentUser,{displayName})
 
         return { 
             ok:true,
@@ -64,26 +65,28 @@ export const loginUser= async ({email,password,displayName}) =>{
         const resp = await signInWithEmailAndPassword(fireBaseAuth,email,password);
         
         const {uid,photoURL,displayName}= resp.user;
-        await  updateProfile(fireBaseAuth.currentUser,{displayName})
+        // await  updateProfile(fireBaseAuth.currentUser,{displayName})
+
+        
 
 
-        console.log({uid,photoURL,displayName});
+        console.log(uid,photoURL,displayName,password)
         
         return {
             ok: true,
-            uid,displayName,email,photoURL
+            uid,displayName,email,photoURL,password,
             
-            }
-            } catch (error) {
-                
-                const errorCode=error.code;
-                const errorMessage='el usuario o la contraseña no son válidas';
-                console.log(errorMessage,email,password)
-                return{
-                    ok: false,
-                    errorCode,
-                    errorMessage,
-                    }
+        }
+    } catch (error) {
+        
+        const errorCode=error.code;
+        const errorMessage='el usuario o la contraseña no son válidas';
+        console.log(errorMessage,email,password)
+        return{
+            ok: false,
+            errorCode,
+            errorMessage,
+        }
     }
 
     

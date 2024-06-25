@@ -47,6 +47,7 @@ const onGoogleSignIn= ( ) =>{
                     item xs={12} 
                     sx={{mt:2}} 
                     display={ errorMessage ? '': 'none'}
+                     
                     >
                       <Alert severity='error'> {errorMessage} </Alert>
                                     

@@ -4,14 +4,14 @@ import { Grid, Typography } from "@mui/material"
 export const ReportNotes = () => {
   return (
     <Grid
-    className=" animate__animated animate__fadeIn animate__faster"
     container
-    spacing={0}
+    // spacing={0}
     direction="column"
     alignItems="center"
     justifyContent="center"
-    sx={{minHeight:'calc(100vh - 100px)',backgroundColor:'primary.main', borderRadius: 6 }}
-    >
+    sx={{minHeight:'90vh',backgroundColor:'primary.main', borderRadius: 6 }}
+    className=" animate__animated animate__fadeIn animate__slover"
+>
 
         <Grid item xs={12}>
             <FeaturedPlayListRounded sx={{fontSize:100, color:'white'}}/>
