@@ -11,9 +11,10 @@ export const SideBar = ({drawerWidth=100}) => {
     return (
     <Box
     component='nav'
-    sx={{ width: 'auto', // Ajusta el ancho automáticamente al contenido
-    display: { xs:'none',md:'block' },
-    flexShrink: 0
+    sx={{ 
+        width: {sm:drawerWidth}, // Ajusta el ancho automáticamente al contenido
+    // display: { xs:'none',md:'block' },
+    flexShrink: {sm:0}
     }}
     >
     
@@ -30,7 +31,7 @@ export const SideBar = ({drawerWidth=100}) => {
                 <Toolbar>
                     <Typography variant="h6" noWrap component='div'>  
                        
-                    <h4>{displayName ? displayName : 'Usuario no identificado'}</h4>
+                    <h4> Profesor(a): {displayName ? displayName : 'Usuario no identificado'}</h4>
                        
 
                          </Typography>

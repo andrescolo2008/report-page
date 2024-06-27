@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 
 
 
-export const NavBar = ({drawerWidthxxx=360}) => {
+export const NavBar = ({anchoCajon}) => {
   
 
   const dispache= useDispatch() 
@@ -17,8 +17,10 @@ export const NavBar = ({drawerWidthxxx=360}) => {
   }
   
   return (
-    <AppBar position="fixed" sx={{width:{sm:`calc(100% - ${drawerWidthxxx}px)`} ,
-    ml:{sm:`${drawerWidthxxx}px`}
+    <AppBar position="fixed" 
+    sx={{
+      width:{sm:`calc(100% - ${anchoCajon}px)`},
+    ml:{sm:`${anchoCajon}px`}
     }}>
         <Toolbar>
 
@@ -32,7 +34,7 @@ export const NavBar = ({drawerWidthxxx=360}) => {
 
              <Grid container direction='row' justifyContent='space-between'
              alignItems='center' >
-               <Typography variant="h6" noWrap component='div'>Report-Card-App</Typography> 
+               <Typography variant="h6" noWrap component='div'>Boletín-de-notas-App</Typography> 
                
                 <IconButton 
                 color="error"

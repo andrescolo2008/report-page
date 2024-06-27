@@ -1,19 +1,20 @@
 import { FeaturedPlayListRounded } from "@mui/icons-material"
 import { Grid, Typography } from "@mui/material"
 
-export const ReportNotes = () => {
+
+export const ReportNotes = (drawerWidth=200) => {
   return (
     <Grid
     container
-    // spacing={0}
+    spacing={0}
     direction="column"
     alignItems="center"
     justifyContent="center"
-    sx={{minHeight:'90vh',backgroundColor:'primary.main', borderRadius: 6 }}
+    sx={{minHeight:'100vh',backgroundColor:'primary.main', borderRadius: 6 }}
     className=" animate__animated animate__fadeIn animate__slover"
 >
 
-        <Grid item xs={12}>
+        <Grid item xs={6}>
             <FeaturedPlayListRounded sx={{fontSize:100, color:'white'}}/>
         </Grid>
 

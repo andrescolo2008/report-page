@@ -10,13 +10,13 @@ import { AddOutlined } from "@mui/icons-material"
 export const ReportPage = () => {
     
     return (
-        <>
-       <ReportLayout  /> 
+        
+       <ReportLayout> 
        
 
-{/* < Nothing /> */}
+< Nothing />
 
-        < ReportNotes />
+        {/* < ReportNotes /> */}
 
        <IconButton
         size="large" 
@@ -31,6 +31,7 @@ export const ReportPage = () => {
             < AddOutlined sx={{fontSize:40 }} />
         </IconButton>
             
-    </>
-)
+            </ReportLayout> 
+    
+    )
 }
