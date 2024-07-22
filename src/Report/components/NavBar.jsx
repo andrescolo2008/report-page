@@ -34,7 +34,7 @@ export const NavBar = ({anchoCajon}) => {
 
              <Grid container direction='row' justifyContent='space-between'
              alignItems='center' >
-               <Typography variant="h6" noWrap component='div'>Boletín-de-notas-App</Typography> 
+               <Typography variant="h6" noWrap component='div'>Boletín-de-notas-App- Colegio El Zipa</Typography> 
                
                 <IconButton 
                 color="error"

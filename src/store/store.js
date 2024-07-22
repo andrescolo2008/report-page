@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authSlice } from "./auth/authSlice";
+import { reportSlice } from "./report/reportSlice";
 
 
 
@@ -7,6 +8,7 @@ import { authSlice } from "./auth/authSlice";
     
         reducer:{
             auth:authSlice.reducer,
+            report:reportSlice.reducer,
         },
         middleware: (getDefaultMiddleware) => getDefaultMiddleware({
             serializableCheck:false

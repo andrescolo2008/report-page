@@ -1,10 +1,17 @@
-import { Button, Grid, Link, TextField, Typography } from "@mui/material"
 
-import { Link as RouterLink} from "react-router-dom"
+import { Button, Grid, TextField } from "@mui/material"
+import { useDispatch } from "react-redux"
+import { startNewNote } from "../../store/report/thunks"
+
+
 
 
 export const ReportPageSearch = () => {
 
+  const dispatche =useDispatch()
+const toReportNotes= ( ) =>{
+dispatche(startNewNote())
+}
  
   return (
 
@@ -21,16 +28,13 @@ export const ReportPageSearch = () => {
                </Grid>
                      <Grid container spacing={2} sx={{mb:2, mt:1,ml:3}}>
                        <Grid item xs={12} sm={6}>
-                           <Button variant='contained' >
+                           <Button variant='contained' 
+                           onClick={toReportNotes}
+                           >
                              Buscar
                            </Button>
                            
-                        {/* <Grid item  justifyContent='center' container spacing={2} sx={{mb:2, mt:1,mr:1}}>
-                           <Link component={RouterLink} color='inherit' to='/auth/login'>
-                            Salir 
-                          </Link>
-
-                        </Grid> */}
+                      
                          </Grid>
                        
                    </Grid>

@@ -1,9 +1,10 @@
-import { FeaturedPlayListRounded } from "@mui/icons-material"
+import {  FeaturedPlayListRounded } from "@mui/icons-material"
 import { Grid, Typography } from "@mui/material"
 
 
-
 export const Nothing = () => {
+
+
   return (
     <Grid
     className=" animate__animated animate__fadeIn animate__slower"
@@ -24,7 +25,9 @@ export const Nothing = () => {
 
                       No hay reporte de notas
              
-              </Typography>          
+              </Typography>  
+
+                 
 
         </Grid>
     </Grid>
