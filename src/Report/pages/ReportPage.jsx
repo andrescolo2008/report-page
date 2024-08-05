@@ -9,7 +9,7 @@ import { startNewNote } from "../../store/report/thunks"
 
 
 export const ReportPage = () => {
-    const {active} =useSelector(state=>state.report)
+    const {active,isSaving} =useSelector(state=>state.report)
 
     const dispatch = useDispatch();
 
@@ -30,6 +30,7 @@ export const ReportPage = () => {
                 }
 <IconButton
 onClick={onClickNewNote} 
+disabled={isSaving}
 size="large"
 sx={{color: "white",
     backgroundColor:'error.main',

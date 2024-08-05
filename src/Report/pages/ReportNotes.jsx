@@ -1,13 +1,16 @@
 import { AddCircleOutlined, FeaturedPlayListRounded } from "@mui/icons-material";
-import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
+import { Button, Grid, IconButton, List, TextField, Typography } from "@mui/material";
 import { startNewNote } from "../../store/report/thunks";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+
 import { updateNote, deleteNote } from "../../store/report/reportSlice";
+import { SideBarData } from "../components/SideBarData";
 
 export const ReportNotes = ({ drawerWidth = 200 }) => {
     const dispatch = useDispatch();
-    const { isSaving, studentNotes } = useSelector(state => state.report);
+    const { isSaving,active,notes } = useSelector(state => state.report);
+
+   
     // Suponiendo que estamos mostrando los detalles de un estudiante específico
 
 
@@ -31,27 +34,16 @@ export const ReportNotes = ({ drawerWidth = 200 }) => {
                     <p>Reporte Calificaciones</p>
                     <br />
 
-                    <p>Obi wan</p>
-             <p>Matemáticas : 4</p>
-                    {/* {studentNotes.map((student) => (
-                        <div key={student.id}>
-                            <img 
-                                src={student.studentPhotoURL} 
-                                alt={`foto:${student.studentName}`} 
-                                style={{ width: '150px', height: '150px', borderRadius: '50%' }}
-                            />
-                            <p>{student.studentName}</p>
-                            <p>Identificación: {student.id}</p>
-                            <p>Curso: {student.course}</p>
-                            <p>Asignatura: { student.subject}</p>
-                            {student.body.map((note, id) => (
-                                <div key={id}>
-                                    <p>Logro: {note} - Calificación: {student.grade[id]}</p> 
-                        
-                                </div>
-                            ))}
-                        </div>
-                    ))} */}
+      {active &&   <p>Título de la nota: {active.title}</p>}
+                    <List>
+       {notes.map(note => (
+          
+          < SideBarData  key={note.id} {...note}/>
+              
+            ))}
+        
+        </List>
+                   
                 </Typography>
                 
                 

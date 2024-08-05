@@ -56,13 +56,11 @@ export const reportSlice = createSlice({
         savingNewNote: (state) => {
             state.isSaving = true;
         },
-        addNewNoteToStudent: (state, action) => {
-            const { studentId, note } = action.payload;
-            const student = state.studentNotes.find(student => student.id === studentId);
-            if (student) {
-                student.body.push(note.body);
-                student.grade.push(note.grade);
-            }
+        setNotes: (state, action) => {
+            
+            state.notes=action.payload;
+            
+            state.isSaving = false;
         },
         updateNote: (state, action) => {
             const { studentId, noteIndex, newNote } = action.payload;
@@ -87,7 +85,7 @@ export const {
     addNewEmptyNote,
     setActiveNote,
     savingNewNote,
-    addNewNoteToStudent,
+    setNotes,
     updateNote,
     deleteNote,
 } = reportSlice.actions;
