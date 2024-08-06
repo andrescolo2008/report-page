@@ -7,30 +7,24 @@ import { useState } from "react"
 
 
 
+
 export const ReportPageSearch = () => {
 
   const dispatche =useDispatch()
 
 
   
-  const [noteTitle, setNoteTitle] = useState('');
-  const {title,body}=useSelector(state => state.report)
+  const [studentId, setStudentId] = useState('');
+ 
 
   const onInputChange = (event) => {
-    setNoteTitle(event.target.value);
+    setStudentId(event.target.value);
       };
 
 
-  const onClickNote= ( ) =>{
-dispatche(setActiveNote({note:noteTitle}))
-}
 const onSubmit= ( event) =>{
-  event.preventDefault()
-  dispatche(setActiveNote({note:noteTitle}))
-  console.log({note:noteTitle});
-  
- 
-  
+  event.preventDefault();
+    dispatche(setActiveNote({ id: parseInt(studentId) }));
 }
   return (
 
@@ -40,17 +34,17 @@ const onSubmit= ( event) =>{
 
                <Grid item xs={'auto'} sx={{mt:6,mr:1,ml:3}}>
                    <TextField 
-                   label="documento"
+                   label="ID del estudiante"
                    type="text"
-                   placeholder='titulo'
-                   value={noteTitle}
+                   placeholder='documento del estudiante'
+                   value={studentId}
                    onChange={onInputChange}
                    />
                </Grid>
                      <Grid container spacing={2} sx={{mb:2, mt:1,ml:3}}>
                        <Grid item xs={12} sm={6}>
-                           <Button variant='contained' 
-                           onClick={onClickNote}
+                           <Button variant='contained' type="submit" 
+                          
                            >
                              Buscar
                            </Button>

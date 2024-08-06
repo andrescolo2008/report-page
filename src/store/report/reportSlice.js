@@ -4,40 +4,40 @@ const initialState = {
     isSaving: false,
     messageSaved: '',
     active: null,
-    // active: [
-    //     {
-    //         id: 10,
-    //         studentName: 'Obi Wan',
-    //         course:9,
-    //         subject:['matemáticas'],
-    //         body:['sabe sumar '],
-    //         grade:[5],
-    //         date: new Date().getTime(),
-    //         studentPhotoURL:"/studentPhotos/Obi-Wan-Kenobi-obi-wan-kenobi-29218257-392-500.jpg",
-    //     },
-    //     {
+    students: [
+        {
+            id: 10,
+            studentName: 'Obi Wan',
+            course:9,
+            subject:['matemáticas'],
+            body:['sabe sumar '],
+            grade:[5],
+            date: new Date().getTime(),
+            studentPhotoURL:"/studentPhotos/Obi-Wan-Kenobi-obi-wan-kenobi-29218257-392-500.jpg",
+        },
+        {
 
-    //         id: 11,
-    //         studentName: 'Darth Vader',
-    //         course:9,
-    //         subject:['matemáticas'],
-    //         body:['sabe sumar '],
-    //         grade:4.5,
-    //         date: new Date().getTime(),
-    //         studentPhotoURL:'/studentPhotos/darthvader.jpeg',//[] https://photodaniel.jpg
-    //      },
-    //      {
+            id: 11,
+            studentName: 'Darth Vader',
+            course:9,
+            subject:['matemáticas'],
+            body:['sabe sumar '],
+            grade:4.5,
+            date: new Date().getTime(),
+            studentPhotoURL:'/studentPhotos/darthvader.jpeg',//[] https://photodaniel.jpg
+         },
+         {
 
-    //         id: 12,
-    //         studentName: 'Cal Kestis',
-    //         course:9,
-    //         subject:['matemáticas'],
-    //         body:['sabe sumar '],
-    //         grade:4,
-    //         date: new Date().getTime(),
-    //         studentPhotoURL:'/studentPhotos/cal.jpg',//[] https://photodaniel.jpg
-    //      },
-    // ],
+            id: 12,
+            studentName: 'Cal Kestis',
+            course:9,
+            subject:['matemáticas'],
+            body:['sabe sumar '],
+            grade:4,
+            date: new Date().getTime(),
+            studentPhotoURL:'/studentPhotos/cal.jpg',//[] https://photodaniel.jpg
+         },
+    ],
     title:'',
     notes:[''],
 };
@@ -51,7 +51,9 @@ export const reportSlice = createSlice({
             state.isSaving = false;
         },
         setActiveNote: (state, action) => {
-            state.active = action.payload;
+            // state.active = action.payload;
+            const student = state.students.find(student => student.id === action.payload.id);
+            state.active = student || null; // Esto asegura que si no se encuentra el estudiante, active sea null
         },
         savingNewNote: (state) => {
             state.isSaving = true;

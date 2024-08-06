@@ -1,14 +1,13 @@
 import { AddCircleOutlined, FeaturedPlayListRounded } from "@mui/icons-material";
 import { Button, Grid, IconButton, List, TextField, Typography } from "@mui/material";
 import { startNewNote } from "../../store/report/thunks";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { updateNote, deleteNote } from "../../store/report/reportSlice";
 import { SideBarData } from "../components/SideBarData";
 
 export const ReportNotes = ({ drawerWidth = 200 }) => {
-    const dispatch = useDispatch();
-    const { isSaving,active,notes } = useSelector(state => state.report);
+    const { active } = useSelector(state => state.report);
 
    
     // Suponiendo que estamos mostrando los detalles de un estudiante específico
@@ -34,15 +33,28 @@ export const ReportNotes = ({ drawerWidth = 200 }) => {
                     <p>Reporte Calificaciones</p>
                     <br />
 
-      {active &&   <p>Título de la nota: {active.title}</p>}
-                    <List>
+                    {active ? (
+            <>
+              <p>Identificación: {active.id}</p>
+              <p>Nombres y Apellidos: {active.studentName}</p>
+              <img src={active.studentPhotoURL} alt={active.studentName} width="100" />
+              <p>Curso: {active.course}</p>
+              <p>Asignaturas: {active.subject}</p>
+              <p>Calificaciones: {active.grade}</p>
+            </>
+          ): (
+            <p>Nose Ha encontrado al estudiante</p>
+          )
+          
+          }
+                    {/* <List>
        {notes.map(note => (
           
           < SideBarData  key={note.id} {...note}/>
               
             ))}
         
-        </List>
+        </List> */}
                    
                 </Typography>
                 
