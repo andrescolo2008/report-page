@@ -22,7 +22,7 @@ const initialState = {
             course:9,
             subject:['matemáticas'],
             body:['sabe sumar '],
-            grade:4.5,
+            grade:[4.5],
             date: new Date().getTime(),
             studentPhotoURL:'/studentPhotos/darthvader.jpeg',//[] https://photodaniel.jpg
          },
@@ -33,7 +33,7 @@ const initialState = {
             course:9,
             subject:['matemáticas'],
             body:['sabe sumar '],
-            grade:4,
+            grade:[4],
             date: new Date().getTime(),
             studentPhotoURL:'/studentPhotos/cal.jpg',//[] https://photodaniel.jpg
          },
@@ -46,9 +46,17 @@ export const reportSlice = createSlice({
     name: 'report',
     initialState,
     reducers: {
+        setActiveStudent: (state, action) => {
+            state.active = state.students.find(student => student.id === action.payload);
+        },
         addNewEmptyNote: (state, action) => {
-            state.notes.push(action.payload);
-            state.isSaving = false;
+            const { studentId, logro, grade } = action.payload;
+            const student = state.students.find(student => student.id === studentId);
+            if (student) {
+                student.body.push(logro);
+                student.grade.push(grade);
+                state.active = student; // Asegurarse de que el estado activo se actualiza
+            }
         },
         setActiveNote: (state, action) => {
             // state.active = action.payload;
@@ -90,6 +98,7 @@ export const {
     setNotes,
     updateNote,
     deleteNote,
+    setActiveStudent
 } = reportSlice.actions;
 
 export default reportSlice.reducer;

@@ -2,6 +2,8 @@ import { AddCircleOutlined, AddOutlined, FeaturedPlayListRounded } from "@mui/ic
 import { Button, Grid, IconButton, List, TextField, Typography } from "@mui/material";
 import { startNewNote } from "../../store/report/thunks";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { addNewEmptyNote } from "../../store/report/reportSlice";
 
 
 export const ReportNotes = ({ drawerWidth = 200 }) => {
@@ -9,11 +11,27 @@ export const ReportNotes = ({ drawerWidth = 200 }) => {
 
     // Suponiendo que estamos mostrando los detalles de un estudiante específico
     const dispatch = useDispatch();
-    const onClickNewNote = () => {
+    // const onClickNewNote = () => {
         
-        dispatch(startNewNote());
-    }
+    //     dispatch(startNewNote());
+    // }
 
+    const [logro, setLogro] = useState('');
+    const [grade, setGrade] = useState('');
+
+    const onClickNewNote = () => {
+        if (logro && grade) {
+            dispatch(addNewEmptyNote({ 
+                studentId: active.id, 
+                logro, 
+                grade: parseFloat(grade) 
+            }));
+            setLogro('');
+            setGrade('');
+            console.log('Update Active', active);
+            
+        }
+    };
 
     return (
         <Grid
@@ -35,46 +53,43 @@ export const ReportNotes = ({ drawerWidth = 200 }) => {
                     <br />
 
                     {active ? (
-            <>
-              <p>Identificación: {active.id}</p>
-              <p>Nombres y Apellidos: {active.studentName}</p>
-              <img src={active.studentPhotoURL} alt={active.studentName} width="100" />
-              <p>Curso: {active.course}</p>
-              <p>Asignaturas: {active.subject}</p>
-              <p>logros: </p>
-              <p>{active.body} : {active.grade}</p>
+                        <>
+                            <p>Identificación: {active.id}</p>
+                            <p>Nombres y Apellidos: {active.studentName}</p>
+                            <img src={active.studentPhotoURL} alt={active.studentName} width="100" />
+                            <p>Curso: {active.course}</p>
+                            <p>Asignaturas: {active.subject.join(', ')}</p>
+                            <p>Logros y Calificaciones:</p>
+                            <ul>
+                                {active.body.map((logro, index) => (
+                                    <li key={index}>{logro} : {active.grade[index]}</li>
+                                ))}
+                            </ul>
 
-              <IconButton
-                    onClick={onClickNewNote} 
-                    // disabled={}
-                    size="large"
-                    sx={{color: "white",
-                    backgroundColor:'error.main',
-                    ':hover':{backgroundColor:'error.main',opacity:'0.8'},
-                    position: 'fixed',
-                    right: 50,
-                    bottom: 50,
-                    borderRadius: '50%',
-                    }}
-                    >
-                    <AddOutlined sx={{fontSize:30}}/>
-
-                    </IconButton>          
-
-            </>
-          ): (
-            <p>No se Ha encontrado al estudiante</p>
-          )
-          
-          }
-                    {/* <List>
-       {notes.map(note => (
-          
-          < SideBarData  key={note.id} {...note}/>
-              
-            ))}
-        
-        </List> */}
+                            <TextField
+                                label="Nuevo Logro"
+                                value={logro}
+                                onChange={(e) => setLogro(e.target.value)}
+                                sx={{ mb: 2, width: '80%' }}
+                            />
+                            <TextField
+                                label="Calificación"
+                                value={grade}
+                                onChange={(e) => setGrade(e.target.value)}
+                                sx={{ mb: 2, width: '80%' }}
+                                type="number"
+                            />
+                            <Button 
+                                variant="contained" 
+                                onClick={onClickNewNote}
+                                disabled={!logro || !grade}
+                            >
+                                Agregar
+                            </Button>
+                        </>
+                    ) : (
+                        <p>No se ha encontrado al estudiante</p>
+                    )}
                    
                 </Typography>
                 
