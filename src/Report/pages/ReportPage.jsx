@@ -9,15 +9,8 @@ import { startNewNote } from "../../store/report/thunks"
 
 
 export const ReportPage = () => {
-    const {active,isSaving} =useSelector(state=>state.report)
+    const {active} =useSelector(state=>state.report)
 
-    const dispatch = useDispatch();
-
-    const onClickNewNote = () => {
-        
-            dispatch(startNewNote());
-        }
-    
     return (
         
        <ReportLayout> 
@@ -28,22 +21,7 @@ export const ReportPage = () => {
                  < Nothing />  
                  
                 }
-<IconButton
-onClick={onClickNewNote} 
-disabled={isSaving}
-size="large"
-sx={{color: "white",
-    backgroundColor:'error.main',
-    ':hover':{backgroundColor:'error.main',opacity:'0.8'},
-    position: 'fixed',
-    right: 50,
-    bottom: 50,
-    borderRadius: '50%',
-}}
->
-    <AddOutlined sx={{fontSize:30}}/>
-    
-</IconButton>
+
         </ReportLayout> 
     
     )

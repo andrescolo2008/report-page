@@ -3,7 +3,7 @@ import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from
 import { useMemo } from 'react'
 
 
-export const SideBarData = ({title='',body,id}) => {
+export const SideBarData = ({title='',studentName,body,id,course,studentPhotoURL}) => {
    
     const shortTitle= useMemo(() =>{
          return title.length >17 ? 
@@ -23,8 +23,19 @@ export const SideBarData = ({title='',body,id}) => {
                             <TurnedInNot />
                         </ListItemIcon>
                         <Grid container>
-                            <ListItemText primary={shortTitle} 
-                            secondary={`cont:${body}`} />
+                            <ListItemText primary={studentName} 
+                            secondary={`id:${id}- grado:${course}`} 
+                           />
+                           <Grid container>
+
+                             <img 
+                             src={studentPhotoURL}
+                             className="img-fluid rounded-top"
+                             alt={`imagen estudiante${studentName}`} 
+                             style={{ width: '100px', height: '100px' }}
+                             />
+                             </Grid>
+                            
                         </Grid>
 
                     </ListItemButton>

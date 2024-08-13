@@ -11,6 +11,13 @@ export const useForm = ( initialForm = {},formValidations={} ) => {
    
   }, [formState])
 
+  // con este useEffect podemos cambiar losdiferentes formulariosqueseleccionemos
+  useEffect(() => {
+    
+   setFormState( initialForm)
+     
+    }, [initialForm] )
+
   const isFormValid = useMemo( () => {
 
     for (const formValue of Object.keys(formValidation) ){

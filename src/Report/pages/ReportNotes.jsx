@@ -1,17 +1,18 @@
-import { AddCircleOutlined, FeaturedPlayListRounded } from "@mui/icons-material";
+import { AddCircleOutlined, AddOutlined, FeaturedPlayListRounded } from "@mui/icons-material";
 import { Button, Grid, IconButton, List, TextField, Typography } from "@mui/material";
 import { startNewNote } from "../../store/report/thunks";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { updateNote, deleteNote } from "../../store/report/reportSlice";
-import { SideBarData } from "../components/SideBarData";
 
 export const ReportNotes = ({ drawerWidth = 200 }) => {
     const { active } = useSelector(state => state.report);
 
-   
     // Suponiendo que estamos mostrando los detalles de un estudiante específico
-
+    const dispatch = useDispatch();
+    const onClickNewNote = () => {
+        
+        dispatch(startNewNote());
+    }
 
 
     return (
@@ -40,10 +41,29 @@ export const ReportNotes = ({ drawerWidth = 200 }) => {
               <img src={active.studentPhotoURL} alt={active.studentName} width="100" />
               <p>Curso: {active.course}</p>
               <p>Asignaturas: {active.subject}</p>
-              <p>Calificaciones: {active.grade}</p>
+              <p>logros: </p>
+              <p>{active.body} : {active.grade}</p>
+
+              <IconButton
+                    onClick={onClickNewNote} 
+                    // disabled={}
+                    size="large"
+                    sx={{color: "white",
+                    backgroundColor:'error.main',
+                    ':hover':{backgroundColor:'error.main',opacity:'0.8'},
+                    position: 'fixed',
+                    right: 50,
+                    bottom: 50,
+                    borderRadius: '50%',
+                    }}
+                    >
+                    <AddOutlined sx={{fontSize:30}}/>
+
+                    </IconButton>          
+
             </>
           ): (
-            <p>Nose Ha encontrado al estudiante</p>
+            <p>No se Ha encontrado al estudiante</p>
           )
           
           }

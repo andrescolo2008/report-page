@@ -11,7 +11,7 @@ import { SideBarData } from './SideBarData';
 
 export const SideBar = ({ drawerWidth = 100 }) => {
     const { displayName } = useSelector(state => state.auth);
-    const { active,notes } = useSelector(state => state.report);
+    const { active,students } = useSelector(state => state.report);
 
     return (
         <Box
@@ -42,11 +42,12 @@ export const SideBar = ({ drawerWidth = 100 }) => {
                 <Divider />
                 <br />
                 <List>
-      {active && notes.map(note => (
+      {active ?(
           
-          < SideBarData  key={note.id} {...note}/>
-              
-            ))}
+          < SideBarData studentName={active.studentName} id={active.id} course={active.course} studentPhotoURL={active.studentPhotoURL} />)
+              :
+              <p> No existe ese estudiante</p>
+            }
         
         </List>
               
